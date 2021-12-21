@@ -1,6 +1,8 @@
-import Layout from '../components/layout'
-import { getAllPosts } from '../lib/post-api'
-import styles from '../styles/Home.module.css'
+import Link from 'next/link';
+
+import Layout from '../components/layout';
+import { getAllPosts } from '../lib/post-api';
+import styles from '../styles/Home.module.css';
 
 export default function Home({ allPosts }) {
 
@@ -14,7 +16,9 @@ export default function Home({ allPosts }) {
                 {data.title}
               </h3>
               <div className="content">
-                <a className="" href={`/${slug}/`}>Читать дальше</a>
+                <Link href={encodeURIComponent(slug)} prefetch={false}>
+                  <a>Читать дальше</a>
+                </Link>
               </div>
             </div>
           </div>

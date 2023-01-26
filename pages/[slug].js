@@ -7,15 +7,18 @@ import Layout from "../components/layout";
 export default function Post({ post }) {
   return (
     <Layout>
-      <div className="content">
-        <ReactMarkdown
-          transformImageUri={(src) => `/${post.slug}/images/${src}`}
-          components={{
-            img: ({node, ...props}) => <img className="image" {...props} />
-          }}
-        >
-          {post.content}
-        </ReactMarkdown>
+      <div className='prose container mx-auto px-4'>
+        <h2 className='mb-6 text-xl text-left font-bold'>{post.data.title}</h2>
+        <div className="">
+          <ReactMarkdown
+            transformImageUri={(src) => `/${post.slug}/images/${src}`}
+            components={{
+              img: ({node, ...props}) => <img className="image" {...props} />
+            }}
+          >
+            {post.content}
+          </ReactMarkdown>
+        </div>
       </div>
     </Layout>
   )

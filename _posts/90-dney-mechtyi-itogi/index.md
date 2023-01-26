@@ -6,6 +6,7 @@ categories:
 tags: 
   - "bicycle"
   - "itogi"
+coverImage: "90daysroute700px.png"
 ---
 
 ![90days-route-700px](90daysroute700px.png "90days-route-700px")

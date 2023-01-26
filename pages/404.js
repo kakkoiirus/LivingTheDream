@@ -4,16 +4,12 @@ export default function Custom404() {
 
     return (
       <Layout>
-          <div className="block">
-            <div className="columns">
-              <div className="column  is-8  is-offset-2  has-text-centered">
-                <h2 className="title  mb-6">
-                    ¯\_(ツ)_/¯
-                </h2>
-                <div className="content">
-                  <p>Что-то пошло не так и мы не смогли найти эту страницу</p>
-                </div>
-              </div>
+          <div className="containers mx-auto text-center pt-16 px-4">
+            <h2 className="text-lg md:text-2xl mb-8">
+                ¯\_(ツ)_/¯
+            </h2>
+            <div className="text-lg  md:text-2xl">
+              <p>Что-то пошло не так и мы не смогли найти эту страницу</p>
             </div>
           </div>
       </Layout>

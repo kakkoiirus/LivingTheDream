@@ -1,13 +1,19 @@
 import Link from 'next/link';
+import Image from 'next/image';
 
 export default function PostCard({ slug, data }) {
   return (
       <Link href={`/${encodeURIComponent(slug)}`} prefetch={false}>
         <a
-          style={{ backgroundImage: `url(/${slug}/images/${data.coverImage})` }}
-          className="flex flex-col justify-center items-center relative overflow-hidden w-full aspect-square p-8 bg-stone-100 rounded-2xl bg-cover"
+          className="relative flex flex-col items-center justify-center w-full p-8 overflow-hidden bg-cover aspect-square bg-gradient-to-r from-stone-100 via-stone-200 to-stone-300 rounded-2xl"
         >
-          <span className="text-xl md:text-2xl p-4 bg-slate-50 font-bold">
+          <Image
+            src={`/${slug}/images/${data.coverImage}`}
+            layout="fill"
+            objectFit="cover"
+            alt={data.title}
+          />
+          <span className="absolute z-20 p-4 m-8 text-xl font-bold md:text-2xl bg-slate-50">
             {data.title}
           </span>
         </a>

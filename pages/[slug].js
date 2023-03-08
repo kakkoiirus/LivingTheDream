@@ -1,23 +1,24 @@
-import ReactMarkdown from 'react-markdown';
+import { useMemo } from 'react';
+import { MDXRemote } from "next-mdx-remote";
 
-import { getAllPosts, getPostBySlug } from '../lib/post-api';
+import { getAllPosts, getPostContentBySlug } from '../lib/post-api';
 
+import Image from 'next/image';
 import Layout from "../components/layout";
 
 export default function Post({ post }) {
+  const components = useMemo(() => ({
+    img: (props) => (
+      <Image {...props} src={`/${post.slug}/images/${props.src}`} alt={props.alt} />
+    ),
+  }), [post]);
+
   return (
     <Layout>
-      <div className='prose container mx-auto px-4'>
-        <h2 className='mb-6 text-xl text-left font-bold'>{post.data.title}</h2>
+      <div className='container px-4 mx-auto prose'>
+        <h2 className='mb-6 text-xl font-bold text-left'>{post.data.title}</h2>
         <div className="">
-          <ReactMarkdown
-            transformImageUri={(src) => `/${post.slug}/images/${src}`}
-            components={{
-              img: ({node, ...props}) => <img className="image" {...props} />
-            }}
-          >
-            {post.content}
-          </ReactMarkdown>
+          <MDXRemote {...post.content} components={{...components}} />
         </div>
       </div>
     </Layout>
@@ -25,7 +26,7 @@ export default function Post({ post }) {
 }
 
 export async function getStaticProps({ params }) {
-  const post = getPostBySlug(params.slug);
+  const post = await getPostContentBySlug(params.slug);
 
   return {
     props: {
